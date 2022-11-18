@@ -1,0 +1,146 @@
+(class window) is the GUI window and the main class 
+
+1 - window object(int height , int width , int position_x , int position_y)
+	height , width : size of the window (optional)
+	position_x , position_y : the position where the window will appear (optional)
+
+description : the GUI window 
+
+-------------------------------------------------------------------------
+
+# Window
+
+ChangeTitle(string title) : changes the title of the screen
+
+GetWidth() : width of the screen
+
+GetHeight() : heigth of the screen
+
+# you have three styles of drawing
+
+FRAME : Just the outline
+FILLED : The shape filled with a color
+INVERTED
+
+---------------------------------------------------------------------------
+
+# tools of Drawing
+
+pen : used to draw shapes in FRAME mode and outlines of shapes in FILLED MODE
+	member function : SetPen(char red , char green , char blue , int pen_width)
+ 			  SetPen(color pen_color , int pen_width)
+	description : customize the pen for drawing using RGB system and sets the width of the pen
+
+brush : used to draw shaped in Filled Color
+	member function : SetBrush(char red , char green , char blue)
+			  SetBrush(color brush_color)
+
+	description : customize the color of the brush 
+
+
+#shapes
+
+
+	DrawLine(int x_initial , int y_initial , int x_final , int y_final)
+	
+	description : draw a line from a point to a point
+
+-------------------------
+
+	DrawRectange(int x1 , int y1 , int x2 , int y2 , drawing_style)
+
+	description : Draw a rectangle
+
+--------------------------------------
+
+	DrawTriangle(x1 , y1 , x2 .. y3 , drawing_style)
+
+	description : Draw a triangle
+
+--------------------------------------
+
+	DrawCircle(x_center , y_center , radius , drawing_style)
+	
+	description : Draw a circle
+
+--------------------------------------
+
+	
+        void DrawPolygon(int* array_of_Xs, int* array_of_Ys , int number_of_vertices , drawing style);
+
+  	Works the same as DrawTriangle, but takes a pointer (or an array) of X and Y values
+  	The number of elements in ipX and ipY must be the same, and iVertices must be 
+  	no greater than the number of elements in the two arrays, or your program may
+  	very well crash.  There is no way I can really guard against this problem
+
+
+--------------------------------------------------------------------------------------------------
+
+
+
+# colors
+
+    there is a Color Class in The Graphics Library
+
+    there is built_in colors in colors.h file (feel free to check them)
+
+    get the color of a pixel (Color Picker) : 
+
+    color GetColor(const int iX, const int iY);
+
+    
+--------------------------------------------------------------------------------------------
+
+
+#input 
+
+mouse:
+
+clicktype is a datatype (enum) can take [NO_CLICK , LEFT_CLICK , RIGHT_CLICK]
+buttonstate is a datatype (enum) can take [BUTTON_UP , BUTTON_DOWN]
+button is a datatype (enum) can take [LEFT_BUTTON,RIGHT_BUTTON]
+
+1 - void GetMouseCoord(int &iX, int &iY);
+// Gets the current mouse coordinates
+
+
+2 - clicktype GetMouseClick(int &iX, int &iY);
+
+Removes the next mouse click event from the queue , 
+iX and iY will contain the location of the click and the clicktype return willed allow the user to 
+determine which mouse button was clicked, and 
+if the click was a double click 
+
+
+3 - clicktype WaitMouseClick(int &iX, int &iY);
+
+WaitMouseClick works the same as above but will only return 
+if there is a mouse click event in the queue, otherwise
+it will wait for one
+
+
+4 - buttonstate GetButtonState(const button btMouse, int &iX, int &iY);
+
+Get information on the current state of the mouse buttons and it's position
+
+
+
+5 - void FlushKeyQueue();
+    void FlushMouseQueue();
+
+These two functions flush all waiting input out of the
+mouse and keyboard input queues.  This is necessary
+because if someone accidentally hits a key or clicks 
+the mouse that event will stay in the buffer until it
+is removed, which may be at a time that input would not
+be wanted by the user
+
+
+
+
+
+
+
+
+
+
